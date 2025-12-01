@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced To-Do App</title>
+    <link rel="stylesheet" href="homepage.css" />
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <h1> To-Do List</h1>
+            <button id="themeToggle">🌙</button>
+        </header>
+
+        <div class="task-input-box">
+            <input type="text" id="taskInput" placeholder="Enter task..." />
+            
+            <select id="taskCategory">
+                <option value="General">General</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Shopping">Shopping</option>
+            </select>
+
+            <select id="taskPriority">
+                <option value="Low">Low Priority</option>
+                <option value="Medium">Medium Priority</option>
+                <option value="High">High Priority</option>
+            </select>
+
+            <button id="addTaskBtn">Add</button>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="searchTask" placeholder="Search tasks..." />
+            <select id="filterCategory">
+                <option value="All">All Categories</option>
+                <option value="General">General</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Shopping">Shopping</option>
+            </select>
+        </div>
+
+        <ul id="taskList"></ul>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
