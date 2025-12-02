@@ -4,24 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advanced To-Do App</title>
+    
     <link rel="stylesheet" href="homepage.css" />
 </head>
 <body>
     <div class="container">
-
         <header>
-            <h1> To-Do List</h1>
-            <button id="themeToggle">🌙</button>
+            <div class="header-left">
+                <h1><i class="fas fa-tasks"></i> To-Do List</h1>
+                <p>Stay organized and boost your productivity</p>
+            </div>
+            <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
         </header>
 
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="overdueTasks">0</div>
+                <div class="stat-label">Overdue</div>
+            </div>
+        </div>
+
         <div class="task-input-box">
-            <input type="text" id="taskInput" placeholder="Enter task..." />
+            <input type="text" id="taskInput" placeholder="What do you need to do?" />
             
             <select id="taskCategory">
                 <option value="General">General</option>
                 <option value="Work">Work</option>
                 <option value="Personal">Personal</option>
                 <option value="Shopping">Shopping</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
             </select>
 
             <select id="taskPriority">
@@ -30,23 +56,44 @@
                 <option value="High">High Priority</option>
             </select>
 
-            <button id="addTaskBtn">Add</button>
+            <button id="addTaskBtn">
+                <i class="fas fa-plus"></i> Add
+            </button>
+        </div>
+
+        <div class="date-picker">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="date" id="taskDueDate" />
+            <span style="font-size: 14px; color: var(--text-secondary);">(Optional due date)</span>
         </div>
 
         <div class="filters">
             <input type="text" id="searchTask" placeholder="Search tasks..." />
+            
             <select id="filterCategory">
                 <option value="All">All Categories</option>
                 <option value="General">General</option>
                 <option value="Work">Work</option>
                 <option value="Personal">Personal</option>
                 <option value="Shopping">Shopping</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
             </select>
+            
+            <div class="filter-actions">
+                <button class="filter-btn" id="showAll">All</button>
+                <button class="filter-btn" id="showPending">Pending</button>
+                <button class="filter-btn" id="showCompleted">Completed</button>
+            </div>
         </div>
 
-        <ul id="taskList"></ul>
+        <ul id="taskList">
+            <!-- Tasks will be added here by JavaScript -->
+        </ul>
+        
+        <footer>
+            <p>Double-click a task to mark as complete • Drag tasks to reorder</p>
+        </footer>
     </div>
-
-<script src="script.js"></script>
-</body>
+    </body>
 </html>
