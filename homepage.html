@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enhanced To-Do App</title>
+    <link rel="stylesheet" href="homepage.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1><i class="fas fa-tasks"></i> To-Do List</h1>
+                <p>Stay organized and boost your productivity</p>
+            </div>
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="exportBtn" class="export-btn" title="Export tasks">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </header>
 
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="overdueTasks">0</div>
+                <div class="stat-label">Overdue</div>
+            </div>
+        </div>
+
+        <div class="task-input-container">
+            <div class="task-input-box">
+                <input type="text" id="taskInput" placeholder="What do you need to do?" />
+                
+                <select id="taskCategory">
+                    <option value="General">General</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                </select>
+
+                <select id="taskPriority">
+                    <option value="Low">Low Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="High">High Priority</option>
+                </select>
+
+                <button id="addTaskBtn">
+                    <i class="fas fa-plus"></i> Add
+                </button>
+            </div>
+            
+            <div class="date-picker">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="taskDueDate" />
+                <span class="date-label">(Optional due date)</span>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchTask" placeholder="Search tasks..." />
+            </div>
+            
+            <select id="filterCategory">
+                <option value="All">All Categories</option>
+                <option value="General">General</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+            </select>
+            
+            <div class="filter-actions">
+                <button class="filter-btn active" id="showAll">All</button>
+                <button class="filter-btn" id="showPending">Pending</button>
+                <button class="filter-btn" id="showCompleted">Completed</button>
+                <button class="filter-btn" id="showOverdue">Overdue</button>
+            </div>
+        </div>
+
+        <div class="task-controls">
+            <button id="clearCompleted" class="control-btn">
+                <i class="fas fa-check-double"></i> Clear Completed
+            </button>
+            <button id="sortByDate" class="control-btn">
+                <i class="fas fa-sort-amount-down"></i> Sort by Date
+            </button>
+            <button id="sortByPriority" class="control-btn">
+                <i class="fas fa-exclamation-circle"></i> Sort by Priority
+            </button>
+        </div>
+
+        <ul id="taskList">
+            <!-- Tasks will be added here by JavaScript -->
+        </ul>
+        
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-clipboard-list"></i>
+            <h3>No tasks yet</h3>
+            <p>Add your first task above to get started!</p>
+        </div>
+        
+        <footer>
+            <p>Double-click a task to mark as complete • Drag tasks to reorder</p>
+            <p class="footer-note">
+                <i class="fas fa-info-circle"></i> 
+                Tasks are saved in your browser's local storage
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modal for task editing -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editTaskText">Task Description</label>
+                    <input type="text" id="editTaskText" placeholder="Enter task description">
+                </div>
+                <div class="form-group">
+                    <label for="editTaskCategory">Category</label>
+                    <select id="editTaskCategory">
+                        <option value="General">General</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Health">Health</option>
+                        <option value="Education">Education</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskPriority">Priority</label>
+                    <select id="editTaskPriority">
+                        <option value="Low">Low Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="High">High Priority</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskDueDate">Due Date</label>
+                    <input type="date" id="editTaskDueDate">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelEdit" class="btn-secondary">Cancel</button>
+                <button id="saveEdit" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
