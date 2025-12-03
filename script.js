@@ -771,13 +771,3 @@ function initApp() {
         }
     });
     
-    // Close modal with Escape key
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && editModal.style.display === "flex") {
-            closeEditModal();
-        }
-    });
-}
-
-// Initialize when page loads
-document.addEventListener("DOMContentLoaded", initApp);
