@@ -781,4 +781,4 @@ function initApp() {
 
 // Initialize when page loads
 document.addEventListener("DOMContentLoaded", initApp);
- hello nepal
+ 
